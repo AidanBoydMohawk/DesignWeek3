@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class TurnMaze : MonoBehaviour
 {
-    private float rotationSpeed = 100f; //Variable to store the rotation speed
+    public float rotationSpeed = 5f; //Variable to store the rotation speed
+    private Rigidbody2D rb2D;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb2D = GetComponent<Rigidbody2D>();
+        rb2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
     }
 
     // Update is called once per frame
