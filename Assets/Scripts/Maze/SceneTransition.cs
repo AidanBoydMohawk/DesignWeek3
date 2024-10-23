@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void WordleLevel()
     {
-        
+        SceneManager.LoadScene("Wordle");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void VaultLevel()
     {
-        
+        SceneManager.LoadScene("Vault");
     }
+
+    public void EncryptionLevel()
+    {
+        SceneManager.LoadScene("Decryption");
+    }
+
+    public void MazeLevel()
+    {
+        SceneManager.LoadScene("Maze");
+    } 
+
+    public void MenuScreen()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+    
 }
