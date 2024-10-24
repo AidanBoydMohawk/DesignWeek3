@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 public class BallMovement : MonoBehaviour
 {
     private Rigidbody2D rb2D;
-    SceneTransition transition;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        rb2D = GetComponent<Rigidbody2D>();        
+        rb2D = GetComponent<Rigidbody2D>();
+        rb2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        rb2D.interpolation = RigidbodyInterpolation2D.Interpolate;
     }
 
     // Update is called once per frame
@@ -19,13 +21,10 @@ public class BallMovement : MonoBehaviour
     {
         Vector2 movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         rb2D.velocity = movement;
-    }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.gameObject.CompareTag("Player"))
-        {
-            SceneManager.LoadScene("Wordle");
-        }
+        // Limit the maximum velocity of the ball
+        float maxSpeed = 10f;  // Set the maximum speed
+        rb2D.velocity = Vector2.ClampMagnitude(rb2D.velocity, maxSpeed);
     }
+    
 }
