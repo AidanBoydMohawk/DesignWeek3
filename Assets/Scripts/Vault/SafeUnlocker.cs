@@ -15,7 +15,7 @@ public class SafeUnlocker : MonoBehaviour
 
     int index = 0;
 
-    int currentLetter = 0; 
+    int currentLetter = 0;
 
     public float rotationSpeed = 5f;
 
@@ -36,7 +36,7 @@ public class SafeUnlocker : MonoBehaviour
 
     private void Awake()
     {
-       GenerateAnwser();
+        GenerateAnwser();
     }
 
     private void Update()
@@ -54,7 +54,7 @@ public class SafeUnlocker : MonoBehaviour
 
     public void GenerateAnwser()
     {
-        for(int i = 0; i < 3; i++ )
+        for (int i = 0; i < 3; i++)
         {
             int stuff = UnityEngine.Random.Range(0, 25);
 
@@ -62,21 +62,21 @@ public class SafeUnlocker : MonoBehaviour
         }
 
     }
-   
+
     public void CheckInputs()
     {
-        
+
 
         if (Input.GetKeyDown("1"))
         {
             confirm = true;
         }
-        else if (Input.GetKeyUp("1")) 
+        else if (Input.GetKeyUp("1"))
         {
             confirm = false;
         }
 
-        if(Input.GetKeyDown("="))
+        if (Input.GetKeyDown("="))
         {
             right = true;
             transform.Rotate(new Vector3(0, 0, -14.4f)); // this isnt a random set of numbers it is 360 divided by 25
@@ -89,15 +89,15 @@ public class SafeUnlocker : MonoBehaviour
 
             Debug.Log(letters[currentLetter]);
         }
-        else if(Input.GetKeyUp("="))
+        else if (Input.GetKeyUp("="))
         {
             right = false;
         }
 
-        if(Input.GetKeyDown("-"))
+        if (Input.GetKeyDown("-"))
         {
             left = true;
-            transform.Rotate(new Vector3(0,0, 14.4f));
+            transform.Rotate(new Vector3(0, 0, 14.4f));
 
             currentLetter--;
             if (currentLetter < 0)
@@ -107,27 +107,35 @@ public class SafeUnlocker : MonoBehaviour
 
             Debug.Log(letters[currentLetter]);
         }
-        else if (Input.GetKeyUp ("-"))
+        else if (Input.GetKeyUp("-"))
         {
             left = false;
         }
 
     }
 
-    
 
-    public void GetCurrentGuess()
+
+    public string GetCurrentGuess()
     {
         if (letters[currentLetter] == answer[index] && confirm)
         {
             correct = true;
 
-            if(correct)
+            if (correct)
             {
                 index++;
                 Debug.Log("yay");
                 confirm = false;
+                correct = false;
+                return letters[currentLetter].ToString();
+
             }
+
         }
+
+
+        return null;
+
     }
 }
