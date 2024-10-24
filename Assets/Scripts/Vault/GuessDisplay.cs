@@ -7,21 +7,31 @@ public class GuessDisplay : MonoBehaviour
 {
     public TextMeshProUGUI text;
 
-    SafeUnlocker safe;
-
-    
-    public char letter { get; private set; }
+    public SafeUnlocker safe;
+    public string letter; //{ get; private set; }
 
     private void Awake()
     {
         text = GetComponent<TextMeshProUGUI>();
 
-        GetComponent<SafeUnlocker>();
+        letter = "?";
+        text.text = letter;
     }
 
     public void SetLetter()
     {
-        this.letter = letter;
-        text.text = letter.ToString();
+        Debug.Log(letter);
+        text.text = letter;
+    }
+
+    private void Update()
+    {
+        if (safe.GetCurrentGuess() != null)
+        {
+            letter = safe.GetCurrentGuess();
+            SetLetter();
+
+        }
+
     }
 }
