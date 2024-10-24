@@ -332,8 +332,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e2cffea7c46de4b97a935b4fb21e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  letters: 6100620063006400650066006700680069006a006b006c006d006e006f0070007100720073007400750076007700780079007a00
   rotationSpeed: 5
-  answer: 000000000000
+  answer: 0000000000000000
 --- !u!114 &623675927
 MonoBehaviour:
   m_ObjectHideFlags: 0
