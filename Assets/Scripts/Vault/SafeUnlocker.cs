@@ -2,22 +2,37 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SafeUnlocker : MonoBehaviour
 {
     //all letters for combination 
-    private char[] letters = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
-
-    private float minusOrPlusCheck = 0f;
+    [SerializeField]
+    public char[] letters = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 
     int index = 0;
 
+    int currentLetter = 0; 
+
     public float rotationSpeed = 5f;
+
+    char guess;
 
     //array to store answer 
     public char[] answer = new char[3];
+
+    bool confirm;
+
+    bool right;
+
+    bool left;
+
+    bool correct;
+
+    bool victory;
 
     private void Awake()
     {
@@ -26,44 +41,15 @@ public class SafeUnlocker : MonoBehaviour
 
     private void Update()
     {
-        bool confirm;
+        CheckInputs();
 
-        bool left = Input.GetKeyDown(KeyCode.Minus);
-        bool right = Input.GetKeyDown(KeyCode.Equals);
-
-        if (right)
-        {
-            transform.Rotate(0, 0, -rotationSpeed * Time.deltaTime);
-
-            minusOrPlusCheck = 1f;
-        }
-
-        if (left)
-        {
-            transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
-
-            minusOrPlusCheck = -1f;
-        }
-
-        if(Input.GetKeyDown("1"))
-        {
-            confirm = true;
-        }
-        else
-        {
-            confirm = false;
-        }
-
-        if (letters[index] == answer[index] && confirm)
-        {
-            answer[index]++;
-        }
+        GetCurrentGuess();
 
         if (index == 3)
         {
-            Debug.Log("yay");
-        }
 
+            victory = true;
+        }
     }
 
     public void GenerateAnwser()
@@ -77,4 +63,71 @@ public class SafeUnlocker : MonoBehaviour
 
     }
    
+    public void CheckInputs()
+    {
+        
+
+        if (Input.GetKeyDown("1"))
+        {
+            confirm = true;
+        }
+        else if (Input.GetKeyUp("1")) 
+        {
+            confirm = false;
+        }
+
+        if(Input.GetKeyDown("="))
+        {
+            right = true;
+            transform.Rotate(new Vector3(0, 0, -14.4f)); // this isnt a random set of numbers it is 360 divided by 25
+
+            currentLetter++;
+            if (currentLetter > 25)
+            {
+                currentLetter = 0;
+            }
+
+            Debug.Log(letters[currentLetter]);
+        }
+        else if(Input.GetKeyUp("="))
+        {
+            right = false;
+        }
+
+        if(Input.GetKeyDown("-"))
+        {
+            left = true;
+            transform.Rotate(new Vector3(0,0, 14.4f));
+
+            currentLetter--;
+            if (currentLetter < 0)
+            {
+                currentLetter = 25;
+            }
+
+            Debug.Log(letters[currentLetter]);
+        }
+        else if (Input.GetKeyUp ("-"))
+        {
+            left = false;
+        }
+
+    }
+
+    
+
+    public void GetCurrentGuess()
+    {
+        if (letters[currentLetter] == answer[index] && confirm)
+        {
+            correct = true;
+
+            if(correct)
+            {
+                index++;
+                Debug.Log("yay");
+                confirm = false;
+            }
+        }
+    }
 }
