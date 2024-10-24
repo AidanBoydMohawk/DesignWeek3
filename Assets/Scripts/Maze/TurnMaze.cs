@@ -31,13 +31,13 @@ public class TurnMaze : MonoBehaviour
         //bool plusKeyPressed = false;
         //bool minusKeyPressed = false;
         // Check if the Equals (+) key was pressed to rotate right
-        if (Input.GetKeyDown(KeyCode.Equals))
+        if (Input.GetKey(KeyCode.Equals))
         {
             rotationDirection = 1f; // Set the direction to rotate right
         }
 
         // Check if the Minus (-) key was pressed to rotate left
-        if (Input.GetKeyDown(KeyCode.Minus))
+        if (Input.GetKey(KeyCode.Minus))
         {
             rotationDirection = -1f; // Set the direction to rotate left
         }
