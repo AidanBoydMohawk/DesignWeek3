@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Maze.unity
+    guid: d93a9732d29132b478d2ed97d3800079
+  - enabled: 1
     path: Assets/Scenes/Wordle.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Vault.unity
+    guid: 05fc91eac526d8840b6c1b83a05205a3
+  - enabled: 1
+    path: Assets/Scenes/Decryption.unity
+    guid: ae27ea231478a404985cf92031e27595
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 6f899994d402fd34a96ebef863b7fe8d
   m_configObjects: {}
