@@ -52,7 +52,7 @@ public class Board : MonoBehaviour
     private void LoadData()
     {
 
-        TextAsset textFile = Resources.Load("official_wordle_common") as TextAsset;
+        TextAsset textFile = Resources.Load("official_wordle_edited.v2") as TextAsset;
         solutions = textFile.text.Split(SEPARATOR, System.StringSplitOptions.None);
 
         textFile = Resources.Load("official_wordle_all") as TextAsset;
@@ -74,10 +74,11 @@ public class Board : MonoBehaviour
         enabled = true;
     }
 
-    private void SetRandomWord()
+    public string SetRandomWord()
     {
         word = solutions[Random.Range(0, solutions.Length)];
         word = word.ToLower().Trim();
+        return word;
     }
 
     private void Update()
