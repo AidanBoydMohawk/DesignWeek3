@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SafeUnlocker : MonoBehaviour
 {
@@ -28,6 +30,10 @@ public class SafeUnlocker : MonoBehaviour
 
     bool left;
 
+    bool correct;
+
+    bool victory;
+
     private void Awake()
     {
        GenerateAnwser();
@@ -38,6 +44,12 @@ public class SafeUnlocker : MonoBehaviour
         CheckInputs();
 
         GetCurrentGuess();
+
+        if (index == 3)
+        {
+
+            victory = true;
+        }
     }
 
     public void GenerateAnwser()
@@ -53,14 +65,7 @@ public class SafeUnlocker : MonoBehaviour
    
     public void CheckInputs()
     {
-        if(currentLetter < 0)
-        {
-            currentLetter = 25;
-        }
-        else if(currentLetter > 25)
-        {
-            currentLetter = 0;
-        }
+        
 
         if (Input.GetKeyDown("1"))
         {
@@ -77,6 +82,10 @@ public class SafeUnlocker : MonoBehaviour
             transform.Rotate(new Vector3(0, 0, -14.4f)); // this isnt a random set of numbers it is 360 divided by 25
 
             currentLetter++;
+            if (currentLetter > 25)
+            {
+                currentLetter = 0;
+            }
 
             Debug.Log(letters[currentLetter]);
         }
@@ -91,6 +100,10 @@ public class SafeUnlocker : MonoBehaviour
             transform.Rotate(new Vector3(0,0, 14.4f));
 
             currentLetter--;
+            if (currentLetter < 0)
+            {
+                currentLetter = 25;
+            }
 
             Debug.Log(letters[currentLetter]);
         }
@@ -101,21 +114,20 @@ public class SafeUnlocker : MonoBehaviour
 
     }
 
-    [SerializeField]
+    
 
     public void GetCurrentGuess()
     {
         if (letters[currentLetter] == answer[index] && confirm)
         {
-            index++;
-            Debug.Log("YAY");
-        }
+            correct = true;
 
-        if(index == 4)
-        {
-            Debug.Log("victory");
+            if(correct)
+            {
+                index++;
+                Debug.Log("yay");
+                confirm = false;
+            }
         }
-
-        
     }
 }
