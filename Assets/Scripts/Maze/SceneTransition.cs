@@ -30,5 +30,10 @@ public class SceneTransition : MonoBehaviour
     {
         SceneManager.LoadScene("Main Menu");
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
     
 }
