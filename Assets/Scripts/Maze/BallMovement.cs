@@ -25,6 +25,25 @@ public class BallMovement : MonoBehaviour
         // Limit the maximum velocity of the ball
         float maxSpeed = 10f;  // Set the maximum speed
         rb2D.velocity = Vector2.ClampMagnitude(rb2D.velocity, maxSpeed);
+        SavePlayerPosition();
     }
+
+    public void SavePlayerPosition()
+    {
+        Vector2 playerposition = transform.position;
+
+        PlayerPrefs.SetFloat("PlayerPosX", playerposition.x);
+        PlayerPrefs.SetFloat("PlayerPosY", playerposition .y);
+    }
+
+    public void LoadPlayerPosition()
+    {
+        float x = PlayerPrefs.GetFloat("PlayerPosX");
+        float y = PlayerPrefs.GetFloat("PlayerPosY");
+
+        transform.position = new Vector2(x, y);
+    }
+
+
     
 }

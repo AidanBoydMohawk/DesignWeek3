@@ -20,7 +20,7 @@ public class DoorSwitch : MonoBehaviour
     void Update()
     {
         //If space key is hit
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Alpha1))
         {
             //Play timeline
             timelineDirector.Play();
@@ -28,7 +28,7 @@ public class DoorSwitch : MonoBehaviour
         }
 
         //If the R key is hit 
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeyCode.A))
         {
             //Set the isReverse bool to true
             isReverse = true;

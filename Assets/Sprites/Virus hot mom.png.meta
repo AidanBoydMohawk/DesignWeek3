@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Sprites/Virus hot mom.png.meta
 guid: 401f1255a8ed2074eb92dbb2560c9ac7
+========
+guid: 43fef0805d86346419a340422aead3aa
+>>>>>>>> Ryan/MazePuzzle:Assets/Sprites/Virus Petpoints.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

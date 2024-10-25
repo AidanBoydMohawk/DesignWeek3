@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Sprites/Virus Ipod.png.meta
 guid: d4efc81b14ca6854b9650b21dcb93c14
+========
+guid: c0fbee7d1b832c047b5168d1805f0e21
+>>>>>>>> Ryan/MazePuzzle:Assets/Sprites/Virus Download.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
