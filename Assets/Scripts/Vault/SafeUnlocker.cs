@@ -6,6 +6,8 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class SafeUnlocker : MonoBehaviour
 {
@@ -47,11 +49,14 @@ public class SafeUnlocker : MonoBehaviour
 
         GetCurrentGuess();
 
+        SceneLoader();
         if (index == 3)
         {
 
             victory = true;
         }
+
+        
     }
 
     public void GenerateAnwser()
@@ -139,5 +144,13 @@ public class SafeUnlocker : MonoBehaviour
 
         return null;
 
+    }
+
+    void SceneLoader()
+    {
+        if (victory)
+        {
+            SceneManager.LoadScene("Maze");
+        }
     }
 }
