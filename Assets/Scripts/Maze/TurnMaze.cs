@@ -9,13 +9,15 @@ public class TurnMaze : MonoBehaviour
     //private float plusKeyHeld = 0;
     //private float minusKeyHeld = 0;
     public float rotationSpeed = 5f; // Variable to store the rotation speed
-    private float rotationDirection = 0f; // -1 for left, 1 for right, 0 for no rotation
+    private float rotationDirection = 0f; // -1 for left, 1 for right, 0 for no rotation    
+    private float currentRotationSpeed = 0f; //Current speed for smooth rotation
+    private float targetRotationSpeed = 0f; //Target rotation speed based on input
     public AudioClip mazeTurn;
     public AudioSource turnSource;
 
     // Start is called before the first frame update
     void Start()
-    {
+    {        
         if(turnSource == null)
         {
             turnSource = GetComponent<AudioSource>();
@@ -47,9 +49,9 @@ public class TurnMaze : MonoBehaviour
         {
             // Rotate along the Z axis
             transform.Rotate(0, 0, rotationSpeed * rotationDirection * Time.deltaTime);
-            
+
             //Play audio clip if not already playing 
-            if(!turnSource.isPlaying)
+            if (!turnSource.isPlaying)
             {
                 turnSource.clip = mazeTurn; //Setting the audio clip
                 turnSource.Play(); //Play audio clip
