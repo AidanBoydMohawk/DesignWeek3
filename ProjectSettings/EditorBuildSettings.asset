@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Decryption.unity
     guid: ae27ea231478a404985cf92031e27595
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: a3004f571c61ecb49b2b548492e49a77
+  - enabled: 1
+    path: Assets/Scenes/VictoryRoyal.unity
+    guid: ba8800ca8b7305146979ddc8c5408227
   m_configObjects: {}

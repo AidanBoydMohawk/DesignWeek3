@@ -19,8 +19,11 @@ public class UIManager : MonoBehaviour
     // Reference to the 'X' button in each virus panel to close it
     public Button[] closeButtons;
 
-    // Reference to the AudioSource for virus popup sound
+    // Sound effects
     public AudioSource virusPopupSound;
+    public AudioSource typingSound;
+    public AudioSource correctSound;
+    public AudioSource incorrectSound;
 
     // Interval range for random virus pop-ups (in seconds)
     public float minPopUpInterval = 5f;
@@ -45,8 +48,9 @@ public class UIManager : MonoBehaviour
             panel.SetActive(false);
         }
 
-        // Add listener for the Input Field's submit event
+        // Add listeners for the Input Field
         playerInputField.onEndEdit.AddListener(OnSubmit);
+        playerInputField.onValueChanged.AddListener(PlayTypingSound);
 
         // Start the coroutine for random virus pop-ups
         StartCoroutine(RandomVirusPopUpCoroutine());
@@ -68,7 +72,15 @@ public class UIManager : MonoBehaviour
             // Show the correct message and load the next scene
             correctMessage.SetActive(true);
             incorrectMessage.SetActive(false); // Hide the incorrect message if visible
-            //SceneManager.LoadScene("NextSceneName"); // Replace with your scene's name
+
+            // Play correct password sound
+            if (correctSound != null)
+            {
+                correctSound.Play();
+            }
+
+            // Uncomment this to load the next scene
+            // SceneManager.LoadScene("NextSceneName"); // Replace with your scene's name
         }
         else
         {
@@ -77,7 +89,20 @@ public class UIManager : MonoBehaviour
             correctMessage.SetActive(false); // Hide the correct message if visible
             playerInputField.text = ""; // Clear the input field
 
-            
+            // Play incorrect password sound
+            if (incorrectSound != null)
+            {
+                incorrectSound.Play();
+            }
+        }
+    }
+
+    // Method to play typing sound when the player types
+    private void PlayTypingSound(string input)
+    {
+        if (typingSound != null)
+        {
+            typingSound.Play();
         }
     }
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-1)]
 public class Board : MonoBehaviour
@@ -43,6 +44,8 @@ public class Board : MonoBehaviour
         rows = GetComponentsInChildren<Row>();
     }
 
+
+
     private void Start()
     {
         LoadData();
@@ -55,7 +58,7 @@ public class Board : MonoBehaviour
         TextAsset textFile = Resources.Load("official_wordle_edited.v2") as TextAsset;
         solutions = textFile.text.Split(SEPARATOR, System.StringSplitOptions.None);
 
-        textFile = Resources.Load("official_wordle_all") as TextAsset;
+        textFile = Resources.Load("official_wordle_common") as TextAsset;
         validWords = textFile.text.Split(SEPARATOR, System.StringSplitOptions.None);
     }
 
@@ -166,6 +169,8 @@ public class Board : MonoBehaviour
 
         if (HasWon(row))
         {
+            SceneManager.LoadScene("Maze");
+
             enabled = false;
         }
 
