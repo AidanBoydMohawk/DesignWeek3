@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
+    WordleScene wordle;
+
     //This script is to call scene transitions
     public void WordleLevel()
     {
@@ -34,6 +36,6 @@ public class SceneTransition : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
-    }
+    }  
     
 }
