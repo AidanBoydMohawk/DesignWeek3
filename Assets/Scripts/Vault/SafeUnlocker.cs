@@ -37,6 +37,8 @@ public class SafeUnlocker : MonoBehaviour
     private void Awake()
     {
         GenerateAnwser();
+
+
     }
 
     private void Update()
