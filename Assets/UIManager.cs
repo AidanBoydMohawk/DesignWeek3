@@ -43,9 +43,9 @@ public class UIManager : MonoBehaviour
         }
 
         // Set all virus panels to inactive at the start
-        foreach (GameObject panel in virusPanels)
+        foreach (GameObject image in virusPanels)
         {
-            panel.SetActive(false);
+            image.SetActive(false);
         }
 
         // Add listeners for the Input Field
