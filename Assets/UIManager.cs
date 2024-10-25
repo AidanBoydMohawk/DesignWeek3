@@ -1,0 +1,99 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
+
+public class UIManager : MonoBehaviour
+{
+    public TMP_InputField playerInputField;
+    public string correctPassword = "mySecretPassword"; // Set your password here
+
+    // References for the correct/incorrect password messages
+    public GameObject correctMessage;
+    public GameObject incorrectMessage;
+
+    // Array of virus panels (fake virus pop-ups)
+    public GameObject[] virusPanels;
+
+    // Reference to the 'X' button in each virus panel to close it
+    public Button[] closeButtons;
+
+    // Reference to the AudioSource for virus popup sound
+    public AudioSource virusPopupSound;
+
+    void Start()
+    {
+        // Ensure both messages are initially hidden
+        correctMessage.SetActive(false);
+        incorrectMessage.SetActive(false);
+
+        // Set up close buttons for each virus panel
+        for (int i = 0; i < closeButtons.Length; i++)
+        {
+            int index = i; // Capture index for the correct panel
+            closeButtons[i].onClick.AddListener(() => CloseVirusPanel(index));
+        }
+
+        // Set all virus panels to inactive at the start
+        foreach (GameObject panel in virusPanels)
+        {
+            panel.SetActive(false);
+        }
+
+        // Add listener for the Input Field's submit event
+        playerInputField.onEndEdit.AddListener(OnSubmit);
+    }
+
+    // Method to handle the input submission
+    private void OnSubmit(string input)
+    {
+        // Call CheckPassword when the player finishes editing
+        CheckPassword();
+    }
+
+    public void CheckPassword()
+    {
+        string playerInput = playerInputField.text;
+
+        if (playerInput == correctPassword)
+        {
+            // Show the correct message and load the next scene
+            correctMessage.SetActive(true);
+            incorrectMessage.SetActive(false); // Hide the incorrect message if visible
+            //SceneManager.LoadScene("NextSceneName"); // Replace with your scene's name
+        }
+        else
+        {
+            // Show the incorrect message
+            incorrectMessage.SetActive(true);
+            correctMessage.SetActive(false); // Hide the correct message if visible
+            playerInputField.text = ""; // Clear the input field
+
+            // Trigger a random virus pop-up
+            PopUpVirusPanel();
+        }
+    }
+
+    // Method to close a virus panel by index
+    public void CloseVirusPanel(int index)
+    {
+        if (index >= 0 && index < virusPanels.Length)
+        {
+            virusPanels[index].SetActive(false);
+        }
+    }
+
+    // Method to randomly pop up one of the virus panels
+    public void PopUpVirusPanel()
+    {
+        // Choose a random virus panel to activate
+        int randomIndex = Random.Range(0, virusPanels.Length);
+        virusPanels[randomIndex].SetActive(true);
+
+        // Play the virus pop-up sound effect
+        if (virusPopupSound != null)
+        {
+            virusPopupSound.Play();
+        }
+    }
+}
