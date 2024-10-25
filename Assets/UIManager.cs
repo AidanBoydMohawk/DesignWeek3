@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class UIManager : MonoBehaviour
 
     // Reference to the AudioSource for virus popup sound
     public AudioSource virusPopupSound;
+
+    // Interval range for random virus pop-ups (in seconds)
+    public float minPopUpInterval = 5f;
+    public float maxPopUpInterval = 15f;
 
     void Start()
     {
@@ -42,6 +47,9 @@ public class UIManager : MonoBehaviour
 
         // Add listener for the Input Field's submit event
         playerInputField.onEndEdit.AddListener(OnSubmit);
+
+        // Start the coroutine for random virus pop-ups
+        StartCoroutine(RandomVirusPopUpCoroutine());
     }
 
     // Method to handle the input submission
@@ -69,8 +77,7 @@ public class UIManager : MonoBehaviour
             correctMessage.SetActive(false); // Hide the correct message if visible
             playerInputField.text = ""; // Clear the input field
 
-            // Trigger a random virus pop-up
-            PopUpVirusPanel();
+            
         }
     }
 
@@ -94,6 +101,20 @@ public class UIManager : MonoBehaviour
         if (virusPopupSound != null)
         {
             virusPopupSound.Play();
+        }
+    }
+
+    // Coroutine to trigger random virus pop-ups over time
+    private IEnumerator RandomVirusPopUpCoroutine()
+    {
+        while (true)
+        {
+            // Wait for a random interval between min and max
+            float randomInterval = Random.Range(minPopUpInterval, maxPopUpInterval);
+            yield return new WaitForSeconds(randomInterval);
+
+            // Trigger a random virus pop-up
+            PopUpVirusPanel();
         }
     }
 }
