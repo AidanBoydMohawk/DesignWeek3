@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class BallMovement : MonoBehaviour
 {
     private Rigidbody2D rb2D;
-    
+    public float maxSpeed = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -14,16 +14,18 @@ public class BallMovement : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         rb2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         rb2D.interpolation = RigidbodyInterpolation2D.Interpolate;
+
+        PhysicsMaterial2D material = new PhysicsMaterial2D();
+        material.friction = 0.5f;
+        material.bounciness = 0f;
+        GetComponent<Collider2D>().sharedMaterial = material;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        rb2D.velocity = movement;
-
-        // Limit the maximum velocity of the ball
-        float maxSpeed = 10f;  // Set the maximum speed
+        
+        // Limit the maximum velocity of the ball        
         rb2D.velocity = Vector2.ClampMagnitude(rb2D.velocity, maxSpeed);
         SavePlayerPosition();
     }

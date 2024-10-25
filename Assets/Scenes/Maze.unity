@@ -252,6 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bf56ec4f655d744b57c69e75949abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasCollided: 0
+  sceneName: Decryption
 --- !u!61 &40841846
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1327,7 +1329,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -5938,7 +5940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 10
-  mazeTurn: {fileID: 8300000, guid: 5b04445ba27dd7b4ebddcccd29e41ca1, type: 3}
+  mazeTurn: {fileID: 8300000, guid: 93efdab4acb0b6c4281af30701a12a80, type: 3}
   turnSource: {fileID: 618210394}
 --- !u!1 &1308140337
 GameObject:
@@ -6324,7 +6326,7 @@ Transform:
   m_GameObject: {fileID: 1409522682}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.16, y: 2.81, z: -10}
+  m_LocalPosition: {x: 6.153, y: 2.837, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7083,7 +7085,7 @@ Transform:
   m_GameObject: {fileID: 1968579329}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.16, y: 2.81, z: -10}
+  m_LocalPosition: {x: 6.153, y: 2.837, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7542,13 +7544,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3116041790028781105, guid: 584f2ae08b807f34f8a25f0484884293, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3595481352669310405, guid: 584f2ae08b807f34f8a25f0484884293, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.16
+      value: 6.153
       objectReference: {fileID: 0}
     - target: {fileID: 3595481352669310405, guid: 584f2ae08b807f34f8a25f0484884293, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.81
+      value: 2.837
       objectReference: {fileID: 0}
     - target: {fileID: 3595481352669310405, guid: 584f2ae08b807f34f8a25f0484884293, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7585,6 +7591,10 @@ PrefabInstance:
     - target: {fileID: 5697676957759422172, guid: 584f2ae08b807f34f8a25f0484884293, type: 3}
       propertyPath: m_Name
       value: AI (Player)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5840936085948676237, guid: 584f2ae08b807f34f8a25f0484884293, type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
